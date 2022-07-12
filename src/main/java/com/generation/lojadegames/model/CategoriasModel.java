@@ -28,7 +28,7 @@ public class CategoriasModel {
 	
 	@OneToMany(mappedBy = "categorias", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categorias")
-	private List<ProdutosModel> produtos;
+	private List<JogosModel> jogos;
 
 	public Long getId() {
 		return id;
@@ -46,14 +46,12 @@ public class CategoriasModel {
 		this.genero = genero;
 	}
 
-	public List<ProdutosModel> getProdutos() {
-		return produtos;
+	public List<JogosModel> getJogos() {
+		return jogos;
 	}
 
-	public void setProdutos(List<ProdutosModel> produtos) {
-		this.produtos = produtos;
+	public void setJogos(List<JogosModel> jogos) {
+		this.jogos = jogos;
 	}
-	
-	
 
 }

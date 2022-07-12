@@ -15,41 +15,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.lojadegames.model.ProdutosModel;
-import com.generation.lojadegames.repository.ProdutosRepository;
+import com.generation.lojadegames.model.JogosModel;
+import com.generation.lojadegames.repository.JogosRepository;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/jogos")
 @CrossOrigin("*")
-public class ProdutosController {
+public class JogosController {
 	
 	@Autowired
-	private ProdutosRepository repository;
+	private JogosRepository repository;
 	
 	@GetMapping
-	public ResponseEntity<List<ProdutosModel> >GetAll() {
+	public ResponseEntity<List<JogosModel> >GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutosModel> GetById(@PathVariable Long id) {
+	public ResponseEntity<JogosModel> GetById(@PathVariable Long id) {
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<ProdutosModel>> GetByNome(@PathVariable String nome) {
+	public ResponseEntity<List<JogosModel>> GetByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutosModel> post (@RequestBody ProdutosModel produto) {
+	public ResponseEntity<JogosModel> post (@RequestBody JogosModel produto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
 	}
 	
 	@PutMapping
-	public ResponseEntity<ProdutosModel> put (@RequestBody ProdutosModel produto) {
+	public ResponseEntity<JogosModel> put (@RequestBody JogosModel produto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
 	}
 	

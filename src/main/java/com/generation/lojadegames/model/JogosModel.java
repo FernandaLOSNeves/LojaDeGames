@@ -2,6 +2,7 @@ package com.generation.lojadegames.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,12 +12,12 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table (name = "tb_produtos")
+@Table (name = "tb_jogos")
 
-public class ProdutosModel {
+public class JogosModel {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
@@ -27,25 +28,23 @@ public class ProdutosModel {
 	private int ano_lancamento;
 	
 	@NotNull
-	@Size(min=1, max=100)
+	@Size(min=1, max=3)
 	private String multiplayer;
 	
 	@NotNull
 	@Size(min=1, max=100)
 	private String plataforma_1;
 	
-	@NotNull
-	@Size(min=1, max=100)
+	
+	@Size(max=100)
 	private String plataforma_2;
 	
-	@NotNull
-	@Size(min=1, max=100)
+	@Size(max=100)
 	private String plataforma_3;
-	
 	
 	@ManyToOne
 	@JsonIgnoreProperties("jogos")
-	private ProdutosModel categorias;
+	private CategoriasModel categorias;
 
 	public Long getId() {
 		return id;
@@ -61,6 +60,22 @@ public class ProdutosModel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public int getAno_lancamento() {
+		return ano_lancamento;
+	}
+
+	public void setAno_lancamento(int ano_lancamento) {
+		this.ano_lancamento = ano_lancamento;
+	}
+
+	public String getMultiplayer() {
+		return multiplayer;
+	}
+
+	public void setMultiplayer(String multiplayer) {
+		this.multiplayer = multiplayer;
 	}
 
 	public String getPlataforma_1() {
@@ -87,29 +102,12 @@ public class ProdutosModel {
 		this.plataforma_3 = plataforma_3;
 	}
 
-	public int getAno_lancamento() {
-		return ano_lancamento;
-	}
-
-	public void setAno_lancamento(int ano_lancamento) {
-		this.ano_lancamento = ano_lancamento;
-	}
-
-	public ProdutosModel getCategorias() {
+	public CategoriasModel getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(ProdutosModel categorias) {
+	public void setCategorias(CategoriasModel categorias) {
 		this.categorias = categorias;
 	}
 
-	public String getMultiplayer() {
-		return multiplayer;
-	}
-
-	public void setMultiplayer(String multiplayer) {
-		this.multiplayer = multiplayer;
-	}
-
-	
 }
